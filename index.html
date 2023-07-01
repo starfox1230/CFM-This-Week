@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic URL Web App</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    #dynamic-image {
+      cursor: pointer;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <img id="dynamic-image" src="https://newsroom.churchofjesuschrist.org/media/285x380/2023-NT-Ind-Family-Cover.jpg" alt="Dynamic Image" />
+
+  <script>
+    var startDate = new Date("2022-12-25"); // Start date for the URL formula
+
+    // Function to generate the dynamic URL based on the formula
+    function generateDynamicURL() {
+      var now = new Date();
+      var weeksBetween = Math.floor((now - startDate) / (7 * 24 * 60 * 60 * 1000)) + 1;
+      var formattedWeeksBetween = String(weeksBetween).padStart(2, '0');
+      var dynamicURL = "https://www.churchofjesuschrist.org/study/manual/come-follow-me-for-individuals-and-families-new-testament-2023/" + formattedWeeksBetween + "?lang=eng";
+      return dynamicURL;
+    }
+
+    // Get the dynamic image element
+    var dynamicImage = document.getElementById("dynamic-image");
+
+    // Add a click event listener to the dynamic image
+    dynamicImage.addEventListener("click", function() {
+      var dynamicURL = generateDynamicURL();
+      window.open(dynamicURL, "_blank");
+    });
+  </script>
+</body>
+</html>
